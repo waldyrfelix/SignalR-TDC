@@ -6,7 +6,9 @@
 body {
   padding-top: 50px;
 }
-
+hr {
+    margin: 5px;
+}
 
 .form-group .help-block {
   display: none;

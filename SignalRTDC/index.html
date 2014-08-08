@@ -27,14 +27,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project name</a>
+                <div class="dropdown" ng-controller="notificationController as n">
+                    <a href="#" class="btn btn-link dropdown-toggle navbar-brand" id="dropdownMenu1" data-toggle="dropdown">
+                        Project name <span class="badge alert-danger">{{n.count()}}</span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation" ng-repeat="msg in n.notifications">
+                            <a href="javascript:void(0)" role="menuitem" tabindex="-1" ng-click="n.read($index)">{{msg}}</a>
+                            <hr />
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse" ng-controller="notificationController as n">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Notificações <span class="badge">{{n.count()}}</span></a></li>
-                </ul>
-            </div>
+           
         </div>
     </div>
 
@@ -85,6 +90,7 @@
     <script src="app/contacts/removeContactModalController.js"></script>
     <script src="app/notification/notificationController.js"></script>
     <script src="app/lib/directives/showErrors.js"></script>
+    <script src="app/lib/services/contactResource.js"></script>
 
 </body>
 </html>

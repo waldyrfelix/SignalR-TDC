@@ -3,10 +3,10 @@
 
     var app = angular.module('app');
 
-    app.controller('listContactsController', ['$modal', '$resource', function ($modal, $resource) {
+    app.controller('listContactsController', ['$modal', 'Contact', function ($modal, Contact) {
         var $self = this;
 
-        $self.contacts = $resource('/api/contacts').query();
+        $self.contacts = Contact.query();
 
         $self.alerts = {
             items: [],
@@ -30,6 +30,7 @@
             });
 
             modalInstance.result.then(function (param) {
+                Contact.delete({ id: param.contact.id });
                 $self.contacts.splice(param.index, 1);
                 $self.alerts.add('success', 'O contato ' + param.contact.name + ' foi excluído com sucesso.');
             });

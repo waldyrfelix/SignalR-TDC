@@ -128,7 +128,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\config.js" />
-    <Content Include="app\lib\services\bannerService.js" />
+    <Content Include="app\lib\services\contactResource.js" />
     <Content Include="app\contacts\removeContactModalController.js" />
     <Content Include="app\contacts\listContactsController.js" />
     <Content Include="app\contacts\listContacts.html" />

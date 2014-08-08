@@ -3,10 +3,8 @@
 
     var app = angular.module('app');
 
-    app.controller('newContactController', ['$scope', '$location', '$resource',
-        function ($scope, $location, $resource) {
-
-            var Contact = $resource('/api/contacts');
+    app.controller('newContactController', ['$scope', '$location', 'Contact',
+        function ($scope, $location, Contact) {
 
             $scope.save = function () {
                 $scope.$broadcast('show-errors-check-validity');
