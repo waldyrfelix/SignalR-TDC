@@ -1,0 +1,32 @@
+﻿<h1 class="page-header">Dashboard</h1>
+<h2 class="sub-header">Section title</h2>
+
+<div ng-controller="listContactsController as list">
+    <div>
+        <alert ng-repeat="alert in list.alerts.items" type="{{alert.type}}" close="list.alerts.close($index)">{{alert.msg}}</alert>
+    </div>
+    <a class="btn btn-default" ng-href="#!/contacts/new">Novo contato</a>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="contact in list.contacts">
+                <tr>
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>
+                        <button type="button" class="btn" ng-click="list.remove(c, $index)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

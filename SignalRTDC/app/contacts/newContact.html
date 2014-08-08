@@ -1,0 +1,21 @@
+﻿<h1 class="page-header">Dashboard</h1>
+<h2 class="sub-header">Section title</h2>
+
+<div ng-controller="newContactController">
+    <form name="userForm" novalidate class="col-md-4">
+        <div class="form-group" show-errors>
+            <label class="control-label">Nome</label>
+            <input type="text" class="form-control" name="name" ng-model="contact.name" required placeholder="Nome" />
+            <p class="help-block" ng-if="userForm.name.$error.required">O nome é obrigatório</p>
+        </div>
+        <div class="form-group" show-errors>
+            <label class="control-label">E-mail</label>
+            <input type="email" class="form-control" name="email" ng-model="contact.email" required placeholder="E-mail" />
+            <p class="help-block" ng-if="userForm.email.$error.required">O email é obrigatório</p>
+            <p class="help-block" ng-if="userForm.email.$error.email">O email é inválido</p>
+        </div>
+
+        <button class="btn btn-primary" ng-click="save()">Adicionar</button>
+        <button class="btn btn-link" ng-click="reset()">Limpar</button>
+    </form>
+</div>
