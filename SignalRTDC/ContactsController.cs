@@ -15,15 +15,7 @@ namespace SignalRTDC
 
     public class ContactsController : ApiController
     {
-
-        private readonly IHubContext _hubContext;
-
         private static readonly List<Contact> Contacts = new List<Contact>();
-
-        public ContactsController()
-        {
-            _hubContext = GlobalHost.ConnectionManager.GetHubContext<EmployeeHub>();
-        }
 
         // GET api/contacts
         public IEnumerable<Contact> Get()
@@ -35,11 +27,9 @@ namespace SignalRTDC
         public Contact Post(Contact contact)
         {
             contact.Id = Guid.NewGuid();
-
-            _hubContext.Clients.All.newContact(contact);
-
             Contacts.Add(contact);
 
+            NotificationHub.SendMessageNewContact(contact);
             return contact;
         }
 
@@ -49,7 +39,7 @@ namespace SignalRTDC
             var contact = Contacts.Single(x => x.Id == id);
             Contacts.Remove(contact);
 
-            _hubContext.Clients.All.deleteContact(contact);
+            NotificationHub.SendMessageDeleteContact(contact);
             return contact;
         }
     }

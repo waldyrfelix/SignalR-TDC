@@ -16,11 +16,6 @@
                     });
                 }
             };
-
-            $scope.reset = function () {
-                $scope.$broadcast('show-errors-reset');
-                $scope.contact = { name: '', email: '' };
-            }
         }
     ]);
 

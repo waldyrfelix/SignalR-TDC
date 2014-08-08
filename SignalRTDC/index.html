@@ -14,6 +14,7 @@
 
     <!-- Custom styles for this template -->
     <link href="Content/dashboard.css" rel="stylesheet">
+    <link href="content/toaster.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -29,7 +30,7 @@
                 </button>
                 <div class="dropdown" ng-controller="notificationController as n">
                     <a href="#" class="btn btn-link dropdown-toggle navbar-brand" id="dropdownMenu1" data-toggle="dropdown">
-                        Project name <span class="badge alert-danger">{{n.count()}}</span>
+                        Project name <span class="badge alert-danger">{{n.notifications.length}}</span>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                         <li role="presentation" ng-repeat="msg in n.notifications">
@@ -47,30 +48,16 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#">Overview</a></li>
-                    <li><a href="#">Reports</a></li>
-                    <li><a href="#">Analytics</a></li>
-                    <li><a href="#">Export</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="">Nav item</a></li>
-                    <li><a href="">Nav item again</a></li>
-                    <li><a href="">One more nav</a></li>
-                    <li><a href="">Another nav item</a></li>
-                    <li><a href="">More navigation</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="">Nav item again</a></li>
-                    <li><a href="">One more nav</a></li>
-                    <li><a href="">Another nav item</a></li>
+                    <li class="active"><a href="#!/contacts">Contatos</a></li>
                 </ul>
             </div>
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
-
             </div>
+            <toaster-container toaster-options="{'position-class': 'toast-bottom-right'}"></toaster-container>
         </div>
     </div>
+    <!--jQuery-->
     <script src="scripts/jquery-1.10.2.js"></script>
     <script src="scripts/jquery.signalR-2.0.2.js"></script>
     <!--AngularJS-->
@@ -78,10 +65,11 @@
     <script src="scripts/angular-sanitize.js"></script>
     <script src="scripts/angular-route.js"></script>
     <script src="scripts/angular-resource.js"></script>
+    <script src="scripts/angular-animate.js"></script>
     <script src="scripts/angular-ui/ui-bootstrap.js"></script>
     <script src="scripts/angular-ui/ui-bootstrap-tpls.js"></script>
     <script src="scripts/angular-signalr-hub.js"></script>
-
+    <script src="scripts/toaster.js"></script>
     <!--Demo App TDC-->
     <script src="app/app.js"></script>
     <script src="app/config.js"></script>

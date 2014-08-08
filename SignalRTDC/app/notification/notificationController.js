@@ -1,41 +1,37 @@
-﻿(function() {
+﻿(function () {
     'use strict';
 
     var app = angular.module('app');
 
-    app.controller('notificationController', ['Hub', 
-        function (Hub) {
+    app.controller('notificationController', ['$scope', 'Hub', 'toaster',
+        function ($scope, Hub, toaster) {
             var $self = this;
 
             $self.notifications = [];
 
-            $self.count = function () { 
+            $self.count = function () {
                 return $self.notifications.length;
             };
 
-            $self.read = function(index) {
+            $self.read = function (index) {
                 $self.notifications.splice(index, 1);
             };
 
-            var addContactNotification = function(contact) {
-                var msg = 'Novo contato criado: ' + contact.Name + ' [' + contact.Email + ']';
-                $self.notifications.push(msg);
-            };
-
-            var removeContactNotification = function (contact) {
-                var msg = 'Contato removido: ' + contact.Name + ' [' + contact.Email + ']';
-                $self.notifications.push(msg);
-            };
-
-            var signalRClient = new Hub('employee', {
+            var signalRClient = new Hub('notification', {
                 listeners: {
-                    'newContact': function(contact) {
-                        addContactNotification(contact);
-                        console.log('newContact called ' + contact);
+                    'newContact': function (msg) {
+                        $self.notifications.push(msg);
+                        toaster.pop('success', msg);
+                        $scope.$apply();
+
+                        console.log('newContact called ' + msg);
                     },
-                    'deleteContact': function (contact) {
-                        removeContactNotification(contact);
-                        console.log('deleteContact called');
+                    'deleteContact': function (msg) {
+                        $self.notifications.push(msg);
+                        toaster.pop('error', msg);
+                        $scope.$apply();
+
+                        console.log('deleteContact called. ' + msg);
                     }
                 }
             });

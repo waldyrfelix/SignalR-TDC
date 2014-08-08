@@ -105,8 +105,10 @@
     <Content Include="app\contacts\newContactController.js" />
     <Content Include="app\lib\directives\showErrors.js" />
     <Content Include="app\notification\notificationController.js" />
+    <Content Include="content\toaster.css" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\SignalRTDC.pubxml" />
+    <Content Include="scripts\toaster.js" />
     <Content Include="scripts\version.json" />
     <Content Include="scripts\errors.json" />
     <Content Include="scripts\angular-touch.min.js.map" />

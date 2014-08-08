@@ -1,11 +1,12 @@
-﻿<h1 class="page-header">Dashboard</h1>
-<h2 class="sub-header">Section title</h2>
+﻿<h2 class="sub-header">Lista de Contatos</h2>
 
 <div ng-controller="listContactsController as list">
     <div>
         <alert ng-repeat="alert in list.alerts.items" type="{{alert.type}}" close="list.alerts.close($index)">{{alert.msg}}</alert>
     </div>
-    <a class="btn btn-default" ng-href="#!/contacts/new">Novo contato</a>
+
+    <a class="btn btn-primary" ng-href="#!/contacts/new">Novo contato</a>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

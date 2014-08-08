@@ -1,17 +1,26 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 
 namespace SignalRTDC
 {
-    [HubName("employee")]
-    public class EmployeeHub : Hub
+    [HubName("notification")]
+    public class NotificationHub : Hub
     {
+        public static void SendMessageNewContact(Contact contact)
+        {
+            var msg = String.Format("Novo contato: {0} <{1}>", contact.Name, contact.Email);
 
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            hubContext.Clients.All.newContact(msg);
+        }
+
+        public static void SendMessageDeleteContact(Contact contact)
+        {
+            var msg = String.Format("Contato removido: {0} <{1}>", contact.Name, contact.Email);
+
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            hubContext.Clients.All.deleteContact(msg);
+        }
     }
 }
